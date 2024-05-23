@@ -10,8 +10,8 @@ This is my take on the classic game Pong. Built as an introduction into simple w
 ## Future improvements
 
 1. Add bounce mechanic for ball when hitting top or bottom of padels (currently only supports bouncing off the inner facing side)
-2. Display the score
-3. Add a start button
+2. Add a start button
+3. Increase speed of ball (to until some max value) after consecutive wall bounces
 
 ## Known bugs
 
