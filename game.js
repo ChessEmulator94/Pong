@@ -26,7 +26,7 @@ class game {
 
     //Initialise the scoreboard
     this.scoreBoard = new scoreboard();
-    // Initialise ball for game
+    // // Initialise ball for game
     this.gameBall = new ball();
     // Set starting scores for players to 0
     this.score = {
@@ -34,12 +34,15 @@ class game {
       p2: 0,
     };
 
-    this.BALL_VELOCITY_MAGNITUDE = 8;
+    this.MIN_BALL_VELOCITY_MAGNITUDE = 4;
+    this.MAX_BALL_VELOCITY_MAGNITUDE = 14;
 
     this.ballPastBoundary = false;
 
+    this.running = false;
+
     // Uncomment the below line to allow the game to start
-    this.startGame();
+    //this.startGame();
   }
 
   // Redraw sprites
@@ -47,7 +50,9 @@ class game {
     this.playerOne.draw();
     this.playerTwo.draw();
     this.gameBall.draw();
-    this.scoreBoard.draw();
+    if (this.running) {
+      this.scoreBoard.draw();
+    }
     this.checkAllCollisions();
   }
 
@@ -63,6 +68,16 @@ class game {
   wallBounce() {
     this.gameBall.velocity.magnitude *= -1;
     this.gameBall.velocity.direction = 180 - this.gameBall.velocity.direction;
+    if (
+      Math.abs(this.gameBall.velocity.magnitude) <
+      this.MAX_BALL_VELOCITY_MAGNITUDE
+    ) {
+      if (this.gameBall.velocity.magnitude < 0) {
+        this.gameBall.velocity.magnitude -= 2;
+      } else {
+        this.gameBall.velocity.magnitude += 2;
+      }
+    }
   }
 
   padelBounce(padel) {
@@ -171,6 +186,6 @@ class game {
     this.gameBall = new ball();
     this.ballPastBoundary = false;
 
-    this.gameBall.velocity.magnitude = this.BALL_VELOCITY_MAGNITUDE;
+    this.gameBall.velocity.magnitude = this.MIN_BALL_VELOCITY_MAGNITUDE;
   }
 }
