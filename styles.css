@@ -1,0 +1,43 @@
+body {
+  margin: 0;
+}
+
+canvas {
+  border: #f7292a solid 5px;
+}
+
+.container {
+  position: relative;
+  height: 576;
+  width: 1024;
+}
+
+.start-btn {
+  background: url("./startbutton.png");
+  background-position: center;
+  background-size: cover;
+
+  /* border: solid red 2px; */
+  position: absolute;
+  bottom: calc(50% - 72px);
+  left: calc(50% - 154px);
+}
+
+.shown {
+  width: 308px;
+  height: 144px;
+}
+
+.hidden {
+  height: 0px;
+  width: 0px;
+}
+
+.start-btn:hover {
+  filter: brightness(1.4);
+  cursor: hand;
+}
+
+.start-btn:active {
+  transform: scale(0.95);
+}
