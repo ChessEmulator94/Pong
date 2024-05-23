@@ -2,6 +2,12 @@
 
 This is my take on the classic game Pong. Built as an introduction into simple web games with graphics.
 
+## How to play
+
+- Current implementation is a two player game
+- Player1 moves padel up and down using `w` and `z` (respectively)
+- Player2 moves padel up and down using `i` and `m` (respectively)
+
 ## Intentional Design Decisions
 
 - The magnitude of the ball's velocity is constant
@@ -12,6 +18,8 @@ This is my take on the classic game Pong. Built as an introduction into simple w
 1. Add bounce mechanic for ball when hitting top or bottom of padels (currently only supports bouncing off the inner facing side)
 2. Add a start button
 3. Increase speed of ball (to until some max value) after consecutive wall bounces
+4. Add simple "AI" to game for single player mode
+   "AI" will calculate balls position based on current straight line trajectory (not considering wall bounces) and move towards that position. Movement can only begin once the ball in in their half of the board
 
 ## Known bugs
 
