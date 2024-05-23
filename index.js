@@ -63,6 +63,7 @@ function animate() {
   // Redraw the canvas
   canvasContext.fillStyle = "black";
   canvasContext.fillRect(0, 0, canvas.width, canvas.height);
+  gameState.scoreBoard.draw();
   // Check if for changes in movement
   updatePositions();
   // Redraw the game

@@ -24,6 +24,8 @@ class game {
       windowHeight: canvas.height,
     });
 
+    //Initialise the scoreboard
+    this.scoreBoard = new scoreboard();
     // Initialise ball for game
     this.gameBall = new ball();
     // Set starting scores for players to 0
@@ -36,6 +38,7 @@ class game {
 
     this.ballPastBoundary = false;
 
+    // Uncomment the below line to allow the game to start
     this.startGame();
   }
 
@@ -44,6 +47,7 @@ class game {
     this.playerOne.draw();
     this.playerTwo.draw();
     this.gameBall.draw();
+    this.scoreBoard.draw();
     this.checkAllCollisions();
   }
 
@@ -154,11 +158,11 @@ class game {
 
   checkOutOfBounds() {
     if (this.gameBall.position.x < 0) {
-      this.score.p2 += 1;
+      this.scoreBoard.p2 += 1;
       this.startGame();
     }
     if (this.gameBall.position.x > canvas.width) {
-      this.score.p1 += 1;
+      this.scoreBoard.p1 += 1;
       this.startGame();
     }
   }
