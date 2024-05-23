@@ -52,6 +52,8 @@ class game {
     this.checkWallCollisions();
     // Check padel collisions
     this.checkPadelCollisions();
+    // Check if round is over
+    this.checkOutOfBounds();
   }
 
   wallBounce() {
@@ -60,39 +62,29 @@ class game {
   }
 
   padelBounce(padel) {
-    // Calculate relative position of padel the ball hit
-
-    // Get the padel y position
-    // Get the ball y position
-    // Subtract the padel y position from the padel and from the ball
-    // You now have the padel at position 0, taking up padel.height vertical space
-    // And the ball will be within that vertical space
-    // Normalise the data to a -1 to 1 scale
+    /* Calculate relative position of padel the ball hit
+     * Get the padel y position
+     * Get the ball y position
+     * Subtract the padel y position from the padel and from the ball
+     * You now have the padel at position 0, taking up padel.height vertical space
+     * And the ball will be within that vertical space
+     * Normalise the data to a -1 to 1 scale
+     */
     let ballPos = this.gameBall.position.y - padel.position.y;
     let minY = 0 - this.gameBall.width / 2;
     let maxY = padel.height + this.gameBall.width / 2;
     let normalisedVal = 2 * ((ballPos - minY) / maxY) - 1;
-    // if (newDirection < 0) {
-    //   newDirection *= -1;
-    // }
+
     // if moving towards playerTwo
     if (this.gameBall.velocity.magnitude > 0) {
       let newDirection = normalisedVal * -1 * this.gameBall.MAX_BOUNCE_ANGLE;
       this.gameBall.velocity.direction = newDirection;
-      console.log(newDirection);
     } else {
       // if moving towards playerOne
       let newDirection = normalisedVal * this.gameBall.MAX_BOUNCE_ANGLE;
       this.gameBall.velocity.direction = newDirection;
-      console.log(newDirection);
     }
-
     this.gameBall.velocity.magnitude *= -1;
-    console.log(this.gameBall.velocity.magnitude);
-
-    /**
-     * positives on the left side result in down but positives on the right side result in up?
-     */
   }
 
   // Checks if ball hit a wall
@@ -160,7 +152,21 @@ class game {
     }
   }
 
+  checkOutOfBounds() {
+    if (this.gameBall.position.x < 0) {
+      this.score.p2 += 1;
+      this.startGame();
+    }
+    if (this.gameBall.position.x > canvas.width) {
+      this.score.p1 += 1;
+      this.startGame();
+    }
+  }
+
   startGame() {
+    this.gameBall = new ball();
+    this.ballPastBoundary = false;
+
     this.gameBall.velocity.magnitude = this.BALL_VELOCITY_MAGNITUDE;
   }
 }
