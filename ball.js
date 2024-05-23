@@ -12,6 +12,9 @@ class ball {
       magnitude: 0, // Constant
       direction: 0,
     };
+
+    this.MAX_BOUNCE_ANGLE = 75;
+
     this.draw();
   }
 
