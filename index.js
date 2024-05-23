@@ -8,7 +8,17 @@ canvasContext.fillRect(0, 0, canvas.width, canvas.height);
 // Initialise a new game
 gameState = new game();
 
-// Objecrt to track which keys are in use and what their functions are
+const startBtn = document.querySelector(".start-btn");
+
+startBtn.addEventListener("click", () => {
+  console.log("HERE");
+  startBtn.classList.add("hidden");
+  startBtn.classList.remove("shown");
+  gameState.running = true;
+  gameState.startGame();
+});
+
+// Object to track which keys are in use and what their functions are
 const keycontroller = {
   w: {
     pressed: false,
@@ -63,10 +73,11 @@ function animate() {
   // Redraw the canvas
   canvasContext.fillStyle = "black";
   canvasContext.fillRect(0, 0, canvas.width, canvas.height);
-  gameState.scoreBoard.draw();
+
   // Check if for changes in movement
   updatePositions();
   // Redraw the game
   gameState.update();
 }
+
 animate();
