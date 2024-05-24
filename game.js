@@ -73,9 +73,9 @@ class game {
       this.MAX_BALL_VELOCITY_MAGNITUDE
     ) {
       if (this.gameBall.velocity.magnitude < 0) {
-        this.gameBall.velocity.magnitude -= 2;
+        this.gameBall.velocity.magnitude -= 1;
       } else {
-        this.gameBall.velocity.magnitude += 2;
+        this.gameBall.velocity.magnitude += 1;
       }
     }
   }

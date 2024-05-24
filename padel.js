@@ -9,7 +9,7 @@ class padel {
   }
 
   draw() {
-    canvasContext.fillStyle = "white";
+    canvasContext.fillStyle = "red";
     canvasContext.fillRect(
       this.position.x,
       this.position.y,
